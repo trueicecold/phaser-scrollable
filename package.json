@@ -2,9 +2,10 @@
   "name": "phaser-scrollable",
   "version": "1.0.0",
   "description": "A phaser kinetic scrollable group.",
-  "main": "phaser-scrollable.js",
+  "main": "./dist/phaser-scrollable.min.js",
   "dependencies": {
-    "grunt": "^1.0.1"
+    "grunt": "^1.0.1",
+		"phaser": "^2.0.6"
   },
   "devDependencies": {},
   "repository": {
@@ -13,12 +14,16 @@
   },
   "keywords": [
     "phaser",
-    "scrollable",
     "scroll",
+    "scrollable",
+    "vertical",
+    "horizontal",
+    "mousewheel",
     "kinetic"
   ],
   "author": "Yaniv Nagar",
-  "license": "ISC",
+  "license": "MIT",
+  "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
   "bugs": {
     "url": "https://github.com/trueicecold/phaser-scrollable/issues"
   },
