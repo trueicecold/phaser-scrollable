@@ -184,13 +184,12 @@ ScrollableArea.prototype.endMove = function () {
 * Create the deceleration effect.
 */
 ScrollableArea.prototype.update = function () {
-
+		
 		this.elapsed = Date.now() - this.timestamp;
 		this.velocityWheelXAbs = Math.abs(this.velocityWheelX);
 		this.velocityWheelYAbs = Math.abs(this.velocityWheelY);
 
 		if (this.autoScrollX && this.amplitudeX != 0) {
-
 				var delta = -this.amplitudeX * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
 				if (delta > 0.5 || delta < -0.5) {
 						this.x = this.targetX + delta;
@@ -199,9 +198,6 @@ ScrollableArea.prototype.update = function () {
 						this.autoScrollX = false;
 						//this.x = -this.targetX;
 				}
-				
-				if (this.x > this._x)
-					this.x = this._x;
 		}
 
 		if (this.autoScrollY && this.amplitudeY != 0) {
@@ -290,20 +286,46 @@ ScrollableArea.prototype.stop = function () {
 };
 
 /**
+* Reposition the scroller
+*/
+ScrollableArea.prototype.setPosition = function(position) {
+    if (position.x) {
+      this.x += position.x - this._x;
+			this.maskGraphics.x = this._x = position.x;
+		}
+    if (position.y) {
+      this.y += position.y - this._y;
+			this.maskGraphics.y = this._y = position.y;
+		}
+}
+
+/**
 * Prevent overscrolling.
 */
 ScrollableArea.prototype.limitMovement = function() {
 	if (this.settings.horizontalScroll) {
 		if (this.x > this._x)
 			this.x = this._x;
-		if (this.x < -(this.width-this._w-this._x))
-			this.x = -(this.width-this._w-this._x);
+		if (this.x < -(this.width-this._w-this._x)) {
+			if (this.width > this._w) {
+				this.x = -(this.width-this._w-this._x);
+			}
+			else {
+				this.x = this._x;
+			}
+		}
 	}
 	
 	if (this.settings.verticalScroll) {
 		if (this.y > this._y)
 			this.y = this._y;
-		if (this.y < -(this.height-this._h-this._y))
-			this.y = -(this.height-this._h-this._y);
+		if (this.y < -(this.height-this._h-this._y)) {
+			if (this.height > this._h) {
+				this.y = -(this.height-this._h-this._y);
+			}
+			else {
+				this.y = this._y;
+			}
+		}
 	}
 }

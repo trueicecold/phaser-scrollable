@@ -46,4 +46,9 @@ npm install https://github.com/trueicecold/phaser-scrollable --save
 	scroller.configure(params);
 ```
 
+### Methods
+* start - start the scroller behavior.
+* stop - stops the scroller behavior. this does not reset the content position.
+* setPosition - object (x,y) - repositions the scroller.
+
 Made with <3 for <img src="https://phaser.io/images/logo/logo-download.png" width="80" height="80"/>

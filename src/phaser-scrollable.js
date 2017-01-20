@@ -14,7 +14,7 @@ var ScrollableArea = function(x, y, w, h, params) {
 	this.maskGraphics.alpha = 0.2;
 	this.maskGraphics.inputEnabled = true;
 	this.mask = this.maskGraphics;
-
+	
 	this.dragging = false;
 	this.pressedDown = false;
 	this.timestamp = 0;
@@ -196,7 +196,7 @@ ScrollableArea.prototype.update = function () {
 				}
 				else {
 						this.autoScrollX = false;
-						this.x = -this.targetX;
+						//this.x = -this.targetX;
 				}
 		}
 
@@ -208,7 +208,7 @@ ScrollableArea.prototype.update = function () {
 				}
 				else {
 						this.autoScrollY = false;
-						this.y = -this.targetY;
+						//this.y = -this.targetY;
 				}
 		}
 
@@ -289,10 +289,14 @@ ScrollableArea.prototype.stop = function () {
 * Reposition the scroller
 */
 ScrollableArea.prototype.setPosition = function(position) {
-	if (position.x)
-		this.x = this.maskGraphics.x = this._x = position.x;
-	if (position.y)
-		this.y = this.maskGraphics.y = this._y = position.y;
+    if (position.x) {
+      this.x += position.x - this._x;
+			this.maskGraphics.x = this._x = position.x;
+		}
+    if (position.y) {
+      this.y += position.y - this._y;
+			this.maskGraphics.y = this._y = position.y;
+		}
 }
 
 /**
