@@ -1,0 +1,66 @@
+<script src="phaser.min.js"></script>
+<script src="dist/phaser-scrollable.min.js"></script>
+
+<script>
+	window.game = new Phaser.Game(800, 600, Phaser.AUTO, "game", {preload: preload, create: create}, false, true);
+	
+	function preload() {
+		game.stage.backgroundColor = "#444444";
+	}
+	
+	var horizontalScroll = true;
+	var verticalScroll = true;
+	var kineticMovement = true;
+	var scroller;
+	
+	function create() {
+		scroller = game.add.existing(new ScrollableArea(10, 10, 400, 400));
+		
+		var textStyle = {font:"30px Arial", fill:"#ffff00"};
+		for (var i=0;i<10;i++) {
+			for (var j=0;j<80;j++) {
+				var text = game.make.text(i*330, j*30, "Yes, everything scrolls", textStyle);
+				scroller.addChild(text);
+			}
+		}
+		scroller.start();
+
+		horizontalScroll = true;
+		verticalScroll = true;
+		kineticMovement = true;
+		
+		this.paramTextStyle = {font:"20px Arial", fill:"#ffffff"};
+		
+		this.horizText = game.add.text(30, 430, "HorizontalScroll: " + horizontalScroll, this.paramTextStyle);
+		this.horizText.inputEnabled = true;
+		this.horizText.events.onInputDown.add(function() {
+			horizontalScroll = !horizontalScroll;
+			configure();
+			this.horizText.setText("HorizontalScroll: " + horizontalScroll);
+		}, this);
+		
+		this.vertText = game.add.text(30, 460, "VerticalScroll: " + verticalScroll, this.paramTextStyle);
+		this.vertText.inputEnabled = true;
+		this.vertText.events.onInputDown.add(function() {
+			verticalScroll = !verticalScroll;
+			configure();
+			this.vertText.setText("VerticalScroll: " + verticalScroll);
+		}, this);
+		
+		this.kineticText = game.add.text(30, 490, "KineticMovement: " + kineticMovement, this.paramTextStyle);
+		this.kineticText.inputEnabled = true;
+		this.kineticText.events.onInputDown.add(function() {
+			kineticMovement = !kineticMovement;
+			configure();
+			this.kineticText.setText("KineticMovement: " + kineticMovement);
+		}, this);
+	}
+	
+	function configure() {
+		this.scroller.configure({
+			horizontalScroll:horizontalScroll,
+			verticalScroll:verticalScroll,
+			kineticMovement:kineticMovement
+		});
+	}
+</script>

@@ -1,0 +1,26 @@
+{
+  "name": "phaser-scrollable",
+  "version": "1.0.0",
+  "description": "A phaser kinetic scrollable group.",
+  "main": "phaser-scrollable.js",
+  "dependencies": {
+    "grunt": "^1.0.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trueicecold/phaser-scrollable.git"
+  },
+  "keywords": [
+    "phaser",
+    "scrollable",
+    "scroll",
+    "kinetic"
+  ],
+  "author": "Yaniv Nagar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trueicecold/phaser-scrollable/issues"
+  },
+  "homepage": "https://github.com/trueicecold/phaser-scrollable#readme"
+}
