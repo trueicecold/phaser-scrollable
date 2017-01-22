@@ -45,8 +45,8 @@ var ScrollableArea = function(x, y, w, h, params) {
 			timeConstantScroll: 325, //really mimic iOS
 			horizontalScroll: true,
 			verticalScroll: true,
-			horizontalWheel: true,
-			verticalWheel: false,
+			horizontalWheel: false,
+			verticalWheel: true,
 			deltaWheel: 40
 	};
 	
