@@ -4,7 +4,7 @@ var ScrollableArea = function(x, y, w, h, params) {
 	Phaser.Group.call(this, game);
 
 	this._x = this.x = x;
-	this._y = this.y = x;
+	this._y = this.y = y;
 	this._w = w;
 	this._h = h;
 	
@@ -51,6 +51,12 @@ var ScrollableArea = function(x, y, w, h, params) {
 	};
 	
 	this.configure(params);
+
+	this.addChild = function(child) {
+		this.maskGraphics.x = this.parent.x + this._x;
+		this.maskGraphics.y = this.parent.y + this._y;
+		ScrollableArea.prototype.addChild.call(this, child);
+	}
 }
 
 ScrollableArea.prototype = Object.create(Phaser.Group.prototype);
