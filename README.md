@@ -51,4 +51,8 @@ npm install https://github.com/trueicecold/phaser-scrollable --save
 * stop - stops the scroller behavior. this does not reset the content position.
 * setPosition - object (x,y) - repositions the scroller.
 
+### Demo
+
+[https://cdn.rawgit.com/trueicecold/phaser-scrollable/master/scrollable-kinetic.html](https://cdn.rawgit.com/trueicecold/phaser-scrollable/master/scrollable-kinetic.html)
+
 Made with <3 for <img src="https://phaser.io/images/logo/logo-download.png" width="80" height="80"/>
