@@ -53,6 +53,6 @@ npm install https://github.com/trueicecold/phaser-scrollable --save
 
 ### Demo
 
-[https://cdn.rawgit.com/trueicecold/phaser-scrollable/master/scrollable-kinetic.html](https://cdn.rawgit.com/trueicecold/phaser-scrollable/master/scrollable-kinetic.html)
+[https://cdn.rawgit.com/trueicecold/phaser-scrollable/e2bfe0cd/scrollable-kinetic.html](https://cdn.rawgit.com/trueicecold/phaser-scrollable/e2bfe0cd/scrollable-kinetic.html)
 
 Made with <3 for <img src="https://phaser.io/images/logo/logo-download.png" width="80" height="80"/>
