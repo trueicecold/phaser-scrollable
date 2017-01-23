@@ -6,6 +6,8 @@
 	
 	function preload() {
 		game.stage.backgroundColor = "#444444";
+		
+		game.load.image("background", "lightworld_large.gif");
 	}
 	
 	var horizontalScroll = true;
@@ -14,22 +16,18 @@
 	var scroller;
 	
 	function create() {
-		scroller = game.add.existing(new ScrollableArea(10, 10, 400, 400));
+		scroller = game.add.existing(new ScrollableArea(0, 0, game.width, game.height));
 		
-		var textStyle = {font:"30px Arial", fill:"#ffff00"};
-		for (var i=0;i<10;i++) {
-			for (var j=0;j<80;j++) {
-				var text = game.make.text(i*330, j*30, "Yes, everything scrolls", textStyle);
-				scroller.addChild(text);
-			}
-		}
+		var image = game.make.image(0, 0, "background");
+		scroller.addChild(image);
+		
 		scroller.start();
 
 		horizontalScroll = true;
 		verticalScroll = true;
 		kineticMovement = true;
 		
-		this.paramTextStyle = {font:"20px Arial", fill:"#ffffff"};
+		this.paramTextStyle = {font:"20px Arial", fill:"#ffffff", stroke:"#000000", strokeThickness:10};
 		
 		this.horizText = game.add.text(30, 430, "HorizontalScroll: " + horizontalScroll, this.paramTextStyle);
 		this.horizText.inputEnabled = true;
