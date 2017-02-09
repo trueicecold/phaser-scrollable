@@ -101,6 +101,10 @@ ScrollableArea.prototype.start = function () {
 * Event triggered when a pointer is pressed down, resets the value of variables.
 */
 ScrollableArea.prototype.beginMove = function () {
+		if (this.allowScrollStopOnTouch && this.scrollTween) {
+			this.scrollTween.pause();
+		}
+		
 		if (this.maskGraphics.getBounds().contains(this.game.input.x, this.game.input.y)) {
 			this.startedInside = true;
 			
@@ -184,6 +188,22 @@ ScrollableArea.prototype.endMove = function () {
 			}
 		}
 };
+
+ScrollableArea.prototype.scrollTo = function(x, y, time, easing, allowScrollStopOnTouch) {
+	if (this.scrollTween) {
+		this.scrollTween.pause();
+	}
+	
+	x = (x > 0) ? -x : x;
+	y = (y > 0) ? -y : y;
+	easing = easing || Phaser.Easing.Quadratic.Out;
+	time = time || 1000;
+	allowScrollStopOnTouch = allowScrollStopOnTouch || false;
+	
+	this.allowScrollStopOnTouch = allowScrollStopOnTouch;
+	this.scrollTween = game.add.tween(this);
+	this.scrollTween.to({x:x, y:y}, time, easing).start();
+}
 
 /**
 * Event called after all the core subsystems and the State have updated, but before the render.

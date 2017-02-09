@@ -52,6 +52,18 @@
 			configure();
 			this.kineticText.setText("KineticMovement: " + kineticMovement);
 		}, this);
+		
+		this.scrollToText = game.add.text(30, 520, "Scroll to 300,300", this.paramTextStyle);
+		this.scrollToText.inputEnabled = true;
+		this.scrollToText.events.onInputDown.add(function() {
+			scroller.scrollTo(300, 300, 1000, false);
+		}, this);
+		
+		this.scrollToText = game.add.text(30, 550, "Scroll to 0, 0", this.paramTextStyle);
+		this.scrollToText.inputEnabled = true;
+		this.scrollToText.events.onInputDown.add(function() {
+			scroller.scrollTo(0, 0, 1000, false);
+		}, this);
 	}
 	
 	function configure() {
