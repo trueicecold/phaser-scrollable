@@ -50,6 +50,10 @@ npm install https://github.com/trueicecold/phaser-scrollable --save
 * start - start the scroller behavior.
 * stop - stops the scroller behavior. this does not reset the content position.
 * setPosition - object (x,y) - repositions the scroller.
+* scrollTo - object (x,y,time,easing,allowScrollStopOnTouch) - scrolls the scroller to the position given.
+	* time - defaults to 1000
+	* easing - defaults to Phaser.Easing.Quadratic.Out
+	* allowScrollStopOnTouch - choose whether to allow the user to cancel the scrolling animation when clicking on the scroller. Defaults to false, useful to cutscenes.
 
 ### Demo
 
