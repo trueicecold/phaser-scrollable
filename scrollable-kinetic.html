@@ -17,8 +17,13 @@
 	
 	function create() {
 		scroller = game.add.existing(new ScrollableArea(0, 0, game.width, game.height));
+		configure();
 		
 		var image = game.make.image(0, 0, "background");
+		image.inputEnabled = true;
+		image.events.onInputUp.add(function() {
+			console.log("IMAGE CLICKED!");
+		});
 		scroller.addChild(image);
 		
 		scroller.start();

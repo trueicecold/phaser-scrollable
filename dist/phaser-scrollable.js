@@ -26,6 +26,9 @@ var ScrollableArea = function(x, y, w, h, params) {
 	this.autoScrollX = false;
 	this.autoScrollY = false;
 
+	this.inputX = 0;
+	this.inputY = 0;
+	
 	this.startX = 0;
 	this.startY = 0;
 
@@ -47,7 +50,9 @@ var ScrollableArea = function(x, y, w, h, params) {
 			verticalScroll: true,
 			horizontalWheel: false,
 			verticalWheel: true,
-			deltaWheel: 40
+			deltaWheel: 40,
+			clickXThreshold: 5,
+			clickYThreshold: 5,
 	};
 	
 	this.configure(params);
@@ -78,7 +83,7 @@ ScrollableArea.prototype.constructor = ScrollableArea;
 ScrollableArea.prototype.configure = function (options) {
 	if (options) {
 			for (var property in options) {
-					if (this.settings.hasOwnProperty(property)) {
+					if (this.settings.hasOwnProperty(property) && this.settings[property] != null) {
 							this.settings[property] = options[property];
 					}
 			}
@@ -108,8 +113,8 @@ ScrollableArea.prototype.beginMove = function () {
 		if (this.maskGraphics.getBounds().contains(this.game.input.x, this.game.input.y)) {
 			this.startedInside = true;
 			
-			this.startX = this.game.input.x;
-			this.startY = this.game.input.y;
+			this.startX = this.inputX = this.game.input.x;
+			this.startY = this.inputY = this.game.input.y;
 			this.pressedDown = true;
 			this.timestamp = Date.now();
 			this.velocityY = this.amplitudeY = this.velocityX = this.amplitudeX = 0;
@@ -185,6 +190,14 @@ ScrollableArea.prototype.endMove = function () {
 					if (this.settings.verticalScroll && (this.velocityWheelYAbs < 0.1 || !this.game.input.activePointer.withinGame)) {
 							this.autoScrollY = true;
 					}
+			}
+			
+			if (Math.abs(game.input.x-this.inputX) <= this.settings.clickXThreshold && Math.abs(game.input.y-this.inputY) <= this.settings.clickYThreshold) {
+				for (var i=0;i<this.children.length;i++) {
+					if (this.getChildAt(i).getBounds().contains(game.input.x, game.input.y) && this.getChildAt(i).inputEnabled && this.getChildAt(i).events.onInputUp.getNumListeners() > 0) {
+						this.getChildAt(i).events.onInputUp.dispatch();
+					}
+				}
 			}
 		}
 };

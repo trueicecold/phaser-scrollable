@@ -5,7 +5,9 @@
   "main": "./dist/phaser-scrollable.min.js",
   "dependencies": {
     "grunt": "^1.0.1",
-		"phaser": "^2.0.6"
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-uglify": "^3.3.0",
+    "phaser": "^2.0.6"
   },
   "devDependencies": {},
   "repository": {
